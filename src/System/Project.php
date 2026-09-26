@@ -8,8 +8,6 @@
 
 		private static ?string $rootPath = null;
 
-		//private $modules = null;
-
 		public readonly string $name;
 		public readonly string $description;
 
@@ -234,14 +232,10 @@
 		/**
 		 * Get the project active modules
 		 *
-		 * @return \Illuminate\Support\Collection The collection of active modules.
+		 * @return \Illuminate\Support\Collection Module fully qualified class names, keyed by module name.
 		 */
 		public function getModules() {
-			return self::$modules;
-			if(empty($this->modules)) {
-				$this->modules = collect(config("app.modules", []));
-			}
-			return $this->modules;
+			return collect(self::$modules);
 		}
 
 		/**
@@ -252,7 +246,6 @@
 		 */
 		public function hasModule(string $module) {
 			return isset(self::$modules[$module]);
-			return $this->getModules()->pluck("name")->contains($module);
 		}
 
 		public static function pushModule(string $name, string $fqcn) {
