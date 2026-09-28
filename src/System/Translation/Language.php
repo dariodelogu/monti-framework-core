@@ -53,6 +53,11 @@
 		public static function set(string $new, bool $skip_cookie = false) {
 			$old = self::get();
 			if($old == $new || !in_array($new, \Project::get()->getLanguages())) {
+				// even on a no-op language change, translations must be loaded at least once:
+				// callers (e.g. route registration) may run __() before Language::init() gets the chance to
+				if(empty(Translator::$translations)) {
+					Translator::init();
+				}
 				return null;
 			}
 			self::$active_language = $new;

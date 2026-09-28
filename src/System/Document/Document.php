@@ -125,6 +125,21 @@
 		}
 
 		/**
+		 * Generates and outputs the llms.txt file.
+		 * Terminates script execution.
+		 *
+		 * @return void
+		 */
+		public function llms() {
+			$path = root_path("src/seo/llms.php");
+			abort_if(!file_exists($path), 404);
+			$content = include($path);
+			header("Content-type: text/plain");
+			echo str_replace("\t", "", $content);
+			exit();
+		}
+
+		/**
 		 * Generates and outputs the web manifest file.
 		 * Terminates script execution.
 		 *
