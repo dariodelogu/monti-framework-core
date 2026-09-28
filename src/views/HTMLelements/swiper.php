@@ -6,10 +6,14 @@
 	$options = isset($options) && is_array($options) ? $options : [];
 
 	$pagination = (isset($pagination) && is_bool($pagination) && $pagination) || isset($options["pagination"]);
-	$navigation = isset($navigation) && is_bool($navigation) ? $navigation : false;
+	//$navigation puo' essere: false (nessuna navigazione), true (bottoni di default dentro lo slider),
+	//oppure un array ["prevEl" => "#selettore", "nextEl" => "#selettore"] per bottoni HTML esterni gia' presenti in pagina;
+	//in questo caso lo slider non genera markup proprio, usa solo quei selettori.
+	$custom_navigation = is_array($navigation ?? null);
+	$navigation_enabled = $custom_navigation || ($navigation ?? false) === true;
 	$scrollbar = isset($scrollbar) && is_bool($scrollbar) ? $scrollbar : false;
 	$zoom = (isset($zoom) && is_bool($zoom) && $zoom) || isset($options["zoom"]);
-	
+
 	if($pagination) {
 		$pagination_default = [
 			"el" => "#" . $id . " .swiper-pagination"
@@ -17,10 +21,10 @@
 		$options["pagination"] = array_merge($pagination_default, $options["pagination"] ?? []);
 	}
 
-	if($navigation) {
-		$options["navigation"] = [
-			"prevEl" => $options["navigation"]["prevEl"] ?? "#" . $id . " .swiper-button-prev",
-			"nextEl" => $options["navigation"]["nextEl"] ?? "#" . $id . " .swiper-button-next",
+	if($navigation_enabled) {
+		$options["navigation"] = $custom_navigation ? $navigation : [
+			"prevEl" => "#" . $id . " .swiper-button-prev",
+			"nextEl" => "#" . $id . " .swiper-button-next",
 		];
 	}
 
@@ -55,7 +59,7 @@
 	<div class="swiper-wrapper">
 		<!-- Slides -->
 		<?php foreach($slides ?? [] as $slide): ?>
-			<div class="swiper-slide">
+			<div class="swiper-slide<?=!empty($slide["class"]) ? " " . $slide["class"] : ""?>"<?php foreach($slide["attrs"] ?? [] as $attr_name => $attr_value): ?> <?=$attr_name?>="<?=$attr_value?>"<?php endforeach; ?>>
 				<?php if(!empty($slide["title"])): ?>
 					<div><?=$slide["title"]?></div>
 				<?php endif; ?>
@@ -72,7 +76,7 @@
 	<?php if($pagination): ?>
 		<div class="swiper-pagination"></div>
 	<?php endif; ?>
-	<?php if($navigation): ?>
+	<?php if($navigation_enabled && !$custom_navigation): ?>
 		<div class="swiper-button-prev"></div>
 		<div class="swiper-button-next"></div>
 	<?php endif; ?>
