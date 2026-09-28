@@ -12,8 +12,8 @@
 <!DOCTYPE html>
 <html lang="<?= $lang ?? \Language::get()?>">
 	<head>
+		<meta charset="UTF-8">
 		<title><?=implode(" - ", array_filter([$document->title . $document->title_append, \Project::get()->name]))?></title>
-		<meta name="charset" content="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="theme-color" content="<?=config("app.colors.theme", "")?>">
 		<?php $document->printMetaTags() ?>

@@ -27,7 +27,7 @@
 			<thead>
 				<tr>
 					<?php foreach($columns as $h) { ?>
-						<th><?=$h?></th>
+						<th scope="col"><?=$h?></th>
 					<?php } ?>
 				</tr>
 			</thead>

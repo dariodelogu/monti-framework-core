@@ -134,8 +134,6 @@
 			class_alias(\App\System\Domain::class, "Domain");
 			class_alias(\App\System\Project::class, "Project");
 
-			\App\System\MVC\View\View::initSourcePaths();
-
 			$conf = config("connections.default", null);
 			if($conf !== null) {
 				\App\System\Database::addConnection($conf, "default");
@@ -145,6 +143,9 @@
 
 			//init modules
 			self::initPackages();
+
+			//project view paths are registered last so they take precedence over module defaults
+			\App\System\MVC\View\View::initSourcePaths();
 			\App\System\Translation\Language::init();
 
 			//boot project

@@ -43,7 +43,10 @@
 ?>
 
 <?php $this->start_style() ?>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.3.1/swiper-bundle.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.3.1/swiper-bundle.css" crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'">
+	<!-- niente fallback <noscript>: viene "spacchettato" dal motore di view di questo componente
+	(a differenza del blocco head statico di ris_home.php), producendo un <link> bloccante duplicato.
+	Accettabile: senza JS lo slider Swiper stesso non funzionerebbe comunque. -->
 	<style>
 		:root {
 			--swiper-theme-color: var(--primary)!important;
