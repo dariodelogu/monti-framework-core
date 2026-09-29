@@ -378,4 +378,47 @@
 			}
 			throw new \Exception("Route '$name' not found");
 		}
+
+		/**
+		 * Generate the URL a route would have in another language.
+		 *
+		 * Routes are registered only for the language active at boot (route paths are built with translated slugs via __()), so the route table for any other language simply doesn't exist in the current request.
+		 * To get it, route registration is replayed into a throwaway Router while that language is temporarily active, and the singleton is swapped back afterwards.
+		 * Reverse routing (urlFor()) never touches the FastRoute dispatcher, so this never affects how the current request is (or was) dispatched.
+		 *
+		 * @param string $lang The target language.
+		 * @param Route $route The route to translate (its name and bound params are reused as-is).
+		 * @return string|null The generated URL, or null if the route doesn't exist in that language.
+		 */
+		public function urlForLanguage(string $lang, Route $route): ?string {
+			if($lang === \Language::get()) {
+				return $route->toUrl();
+			}
+
+			$original_router = self::$instance;
+			$original_lang = \Language::get();
+
+			self::$instance = new Router();
+			\Language::set($lang, true);
+
+			include(\App\System\Project::mainRoutesPath());
+			$project_routes = \App\System\Project::projectRoutesPath();
+			if(file_exists($project_routes)) {
+				include $project_routes;
+			}
+			foreach(\App\System\Project::get()->getModules() as $fqcn) {
+				(new $fqcn())->load_routes();
+			}
+
+			$url = null;
+			try {
+				$url = self::$instance->urlFor($route->getName(), $route->getParams());
+			}
+			catch(\Exception $e) {}
+
+			self::$instance = $original_router;
+			\Language::set($original_lang, true);
+
+			return $url;
+		}
 	}

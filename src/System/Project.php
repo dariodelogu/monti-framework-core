@@ -152,10 +152,10 @@
 			self::boot();
 
 			//shared framework routes, shipped with this package
-			include(__DIR__ . "/../routes.php");
+			include(self::mainRoutesPath());
 
 			//project-specific routes
-			$project_routes = root_path("src/routes.php");
+			$project_routes = self::projectRoutesPath();
 			if(file_exists($project_routes)) {
 				include $project_routes;
 			}
@@ -251,5 +251,23 @@
 
 		public static function pushModule(string $name, string $fqcn) {
 			self::$modules[$name] = $fqcn;
+		}
+
+		/**
+		 * Path to the framework's own shared routes.php, included once at boot.
+		 *
+		 * @return string
+		 */
+		public static function mainRoutesPath(): string {
+			return __DIR__ . "/../routes.php";
+		}
+
+		/**
+		 * Path to the project's own routes.php, if it has one.
+		 *
+		 * @return string
+		 */
+		public static function projectRoutesPath(): string {
+			return root_path("src/routes.php");
 		}
 	}

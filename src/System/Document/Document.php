@@ -83,6 +83,18 @@
 		}
 
 		/**
+		 * Builds the <title> content: page title + title_append, with the project name appended as a brand suffix. If that would exceed $max_length (Google truncates titles at roughly this length in search results), the brand suffix is dropped so the page-specific, keyword-bearing part is never the part that gets cut.
+		 *
+		 * @param int $max_length Soft length budget for the full title, brand included.
+		 * @return string
+		 */
+		public function renderTitleTagContent(int $max_length = 60): string {
+			$page_part = $this->title . $this->title_append;
+			$full = implode(" - ", array_filter([$page_part, \Project::get()->name]));
+			return mb_strlen($full) > $max_length ? $page_part : $full;
+		}
+
+		/**
 		 * Generates and outputs the XML sitemap.
 		 * Terminates script execution.
 		 *
@@ -215,6 +227,32 @@
 			];
 			if(!empty($options["preload"])) {
 				$this->appendPreload("style", $link, $options);
+			}
+			return $this;
+		}
+
+		/**
+		 * Adds a <link rel="alternate" hreflang="..."> for every active language of the project
+		 * (self-reference included, as recommended by Google), for the current named route.
+		 * Requires the current route to have a name (routes without ->name() are skipped).
+		 *
+		 * @return $this
+		 */
+		public function appendHreflangAlternates() {
+			$route = router()->currentRoute();
+			if(!$route || !$route->getName()) {
+				return $this;
+			}
+			foreach(\Project::get()->getLanguages() as $lang) {
+				$path = router()->urlForLanguage($lang, $route);
+				if($path === null) {
+					continue;
+				}
+				$this->appendLink([
+					"rel" => "alternate",
+					"hreflang" => $lang,
+					"href" => \Domain::getOrigin() . $path
+				]);
 			}
 			return $this;
 		}
