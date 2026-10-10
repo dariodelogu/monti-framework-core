@@ -11,6 +11,11 @@
 	 * ["option_name" => ["label" => string, "secret" => bool]]. Each value is taken from
 	 * the stdin (lines "Module.option_name=value", when there's no terminal) or, when missing,
 	 * asked on the terminal.
+	 *
+	 * The setup runs in two phases: first setup() on every module (schema), then afterSetup()
+	 * on the modules that define it, when all the tables exist. afterSetup() returns the lines
+	 * to print (an array or a generator of strings, a generator is printed line by line while it runs)
+	 * and doesn't print anything itself.
 	 */
 	class Setup extends Command {
 
@@ -56,6 +61,28 @@
 				}
 				$completed[] = $name;
 				$this->console->success($name);
+			}
+			//second phase: every schema exists now, so a module can rely on the tables of the others
+			$started = false;
+			foreach(\App\System\Project::get()->getModules() as $name => $class) {
+				$module = new $class();
+				if(!method_exists($module, "afterSetup")) {
+					continue;
+				}
+				try {
+					//a line is printed as soon as the hook produces it, so the progress is visible
+					foreach($module->afterSetup() as $line) {
+						if(!$started) {
+							$this->console->line();
+							$started = true;
+						}
+						$this->console->success($line);
+					}
+				}
+				catch(\Throwable $e) {
+					$this->reportFailure($name . " (after setup)", $e, $completed);
+					return 1;
+				}
 			}
 			$this->console->line();
 			$this->console->success(
