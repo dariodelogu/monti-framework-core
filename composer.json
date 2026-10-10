@@ -27,7 +27,7 @@
     "extra": {
         "monti-framework": {
             "providers": [
-                "App\\System\\Bootstrap"
+                "App\\Bootstrap"
             ]
         }
     }

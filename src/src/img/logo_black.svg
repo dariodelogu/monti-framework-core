@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="150mm"
+   height="130mm"
+   viewBox="0 0 150 130"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="Monti logo dark.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showguides="false"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="200.46477"
+     inkscape:cy="262.69016"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <sodipodi:guide
+       position="99.999992,-19.000031"
+       orientation="0,1"
+       id="guide1"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,134,229)" />
+    <sodipodi:guide
+       position="99.999992,-19.000031"
+       orientation="-1,0"
+       id="guide2"
+       inkscape:locked="false"
+       inkscape:label=""
+       inkscape:color="rgb(0,134,229)" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <rect
+       x="75.595352"
+       y="360.86084"
+       width="219.65442"
+       height="114.10619"
+       id="rect1" />
+  </defs>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <text
+       xml:space="preserve"
+       style="font-size:51.7276px;font-family:'Yu Gothic UI';-inkscape-font-specification:'Yu Gothic UI';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke-width:0.388571;fill-opacity:1"
+       x="8.3335485"
+       y="82.104698"
+       id="text3"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto;stroke-width:0.388573;fill:#000000;fill-opacity:1"
+         x="8.3335485"
+         y="82.104698">Monti</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="circle"
+     style="display:none">
+    <ellipse
+       style="fill:#000000;stroke-width:0.264583"
+       id="path3"
+       cx="75.416733"
+       cy="64.037064"
+       rx="53.103088"
+       ry="54.037064" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="g14"
+     inkscape:label="Pills bottom"
+     transform="rotate(180,100.07944,148.73178)">
+    <g
+       inkscape:groupmode="layer"
+       id="g10"
+       inkscape:label="Pill yellow"
+       style="display:inline">
+      <rect
+         style="display:inline;fill:#f1c40f;fill-opacity:1;stroke-width:0.264583"
+         id="rect10"
+         width="4"
+         height="12"
+         x="240.90282"
+         y="51.956722"
+         rx="2"
+         inkscape:label="rect2"
+         inkscape:transform-center-y="-38.835527"
+         inkscape:transform-center-x="-30.534123"
+         transform="rotate(38.203275)" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="g11"
+       inkscape:label="Pill green"
+       style="display:inline">
+      <rect
+         style="display:inline;fill:#5fad40;fill-opacity:1;stroke-width:0.264583"
+         id="rect11"
+         width="4"
+         height="12"
+         x="172.84927"
+         y="144.49361"
+         rx="2"
+         inkscape:label="rect2"
+         inkscape:transform-center-y="-48.090975"
+         inkscape:transform-center-x="-11.27856"
+         transform="rotate(13.226134)" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="g12"
+       inkscape:label="Pill pink"
+       style="display:inline">
+      <rect
+         style="display:inline;fill:#da0368;fill-opacity:1;stroke-width:0.264583"
+         id="rect12"
+         width="4"
+         height="12"
+         x="65.743889"
+         y="201.40053"
+         rx="2"
+         inkscape:label="rect2"
+         inkscape:transform-center-x="11.283312"
+         inkscape:transform-center-y="-48.090295"
+         transform="rotate(-13.171662)" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="g13"
+       inkscape:label="Pill orange"
+       style="display:inline">
+      <rect
+         style="display:inline;fill:#f75202;fill-opacity:1;stroke-width:0.264583"
+         id="rect13"
+         width="4"
+         height="12"
+         x="-48.022392"
+         y="206.1792"
+         rx="2"
+         inkscape:label="rect2"
+         inkscape:transform-center-x="30.384014"
+         inkscape:transform-center-y="-38.946431"
+         transform="rotate(-37.928367)" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Pills top">
+    <g
+       inkscape:groupmode="layer"
+       id="g9"
+       inkscape:label="Pill yellow"
+       style="display:inline">
+      <rect
+         style="display:inline;fill:#f1c40f;fill-opacity:1;stroke-width:0.264583"
+         id="rect9"
+         width="4"
+         height="12"
+         x="97.748795"
+         y="-50.690464"
+         rx="2"
+         inkscape:label="rect2"
+         inkscape:transform-center-y="-38.835527"
+         inkscape:transform-center-x="-30.534123"
+         transform="rotate(38.203275)" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="g8"
+       inkscape:label="Pill green"
+       style="display:inline">
+      <rect
+         style="display:inline;fill:#5fad40;fill-opacity:1;stroke-width:0.264583"
+         id="rect8"
+         width="4"
+         height="12"
+         x="86.427017"
+         y="-9.0013638"
+         rx="2"
+         inkscape:label="rect2"
+         inkscape:transform-center-y="-48.090975"
+         inkscape:transform-center-x="-11.27856"
+         transform="rotate(13.226134)" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="g7"
+       inkscape:label="Pill pink"
+       style="display:inline">
+      <rect
+         style="display:inline;fill:#da0368;fill-opacity:1;stroke-width:0.264583"
+         id="rect7"
+         width="4"
+         height="12"
+         x="56.576946"
+         y="25.487261"
+         rx="2"
+         inkscape:label="rect2"
+         inkscape:transform-center-x="11.283312"
+         inkscape:transform-center-y="-48.090295"
+         transform="rotate(-13.171662)" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer2"
+       inkscape:label="Pill orange"
+       style="display:inline">
+      <rect
+         style="display:inline;fill:#f75202;fill-opacity:1;stroke-width:0.264583"
+         id="rect2"
+         width="4"
+         height="12"
+         x="17.319666"
+         y="42.594563"
+         rx="2"
+         inkscape:label="rect2"
+         inkscape:transform-center-x="30.384014"
+         inkscape:transform-center-y="-38.946431"
+         transform="rotate(-37.928367)" />
+    </g>
+  </g>
+</svg>

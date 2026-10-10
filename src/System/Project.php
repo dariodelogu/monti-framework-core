@@ -63,6 +63,18 @@
 		 * @return     void
 		 */
 		public static function init(): void {
+			self::bootstrap();
+			self::run();
+		}
+
+		/**
+		 * Prepares the application without handling any request: environment, error handling,
+		 * database connection, modules and the project's own boot hook.
+		 * Used directly by non-HTTP entry points (e.g. the CLI).
+		 *
+		 * @return     void
+		 */
+		public static function bootstrap(): void {
 			$env = parse_ini_file(root_path(".env"));
 			if($env["TESTING"] == true) {
 				ini_set('display_errors', 1);
@@ -114,7 +126,7 @@
 			$log->pushHandler(new \Monolog\Handler\StreamHandler(root_path('logs/app.log'), \Monolog\Level::Warning));
 
 			$whoops = new \Whoops\Run;
-			$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+			$whoops->pushHandler(PHP_SAPI === 'cli' ? new \Whoops\Handler\PlainTextHandler : new \Whoops\Handler\PrettyPageHandler);
 			$whoops->pushHandler(new \Whoops\Handler\CallbackHandler(function ($exception, $inspector, $run) use ($log) {
 				$log->error($exception->getMessage(), [
 					'file' => $exception->getFile(),
@@ -139,7 +151,9 @@
 				\App\System\Database::addConnection($conf, "default");
 			}
 
-			\App\System\Session::start();
+			if(PHP_SAPI !== 'cli') {
+				\App\System\Session::start();
+			}
 
 			//init modules
 			self::initPackages();
@@ -150,7 +164,15 @@
 
 			//boot project
 			self::boot();
+		}
 
+		/**
+		 * Registers the routes, dispatches the current HTTP request and cleans the session flash data.
+		 * Requires bootstrap() to have been called.
+		 *
+		 * @return     void
+		 */
+		public static function run(): void {
 			//shared framework routes, shipped with this package
 			include(self::mainRoutesPath());
 

@@ -48,7 +48,7 @@ class Controller {
      *
      * @throws \InvalidArgumentException If $namespace is empty.
      */
-    public function copyResources(string $namespace, array $options): void
+    public function copyResources(string $namespace, array $options = []): void
     {
         $namespace = trim($namespace);
 
