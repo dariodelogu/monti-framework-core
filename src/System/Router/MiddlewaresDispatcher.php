@@ -9,7 +9,7 @@
     class MiddlewaresDispatcher implements RequestHandlerInterface
     {
         /**
-         * @var array $middlewares The list of middlewares to be dispatched.
+         * @var array $middlewares The list of middlewares to be dispatched, each one is ["class" => string, "parameters" => array].
          */
         private array $middlewares;
 
@@ -21,7 +21,7 @@
         /**
          * Constructor for the MiddlewaresDispatcher class.
          *
-         * @param array $middlewares The list of middlewares to be dispatched.
+         * @param array $middlewares The list of middlewares to be dispatched, each one is ["class" => string, "parameters" => array].
          * @param RequestHandlerInterface $finalHandler The final handler to be called after all middlewares.
          */
         public function __construct(array $middlewares, RequestHandlerInterface $finalHandler)
@@ -55,7 +55,8 @@
                 return $this->finalHandler->handle($request);
             }
 
-            $middleware = new $this->middlewares[$index];
+            $definition = $this->middlewares[$index];
+            $middleware = new $definition["class"](...$definition["parameters"]);
 
             //Builds a handler that calls the next middleware
             $nextHandler = new class($this, $index + 1) implements RequestHandlerInterface {

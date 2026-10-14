@@ -23,7 +23,7 @@
 		private ?string $name = null;
 
 		/**
-		 * @var array $middlewares The list of middlewares applied to the route.
+		 * @var array $middlewares The list of middlewares applied to the route, each one is ["class" => string, "parameters" => array].
 		 */
 		private array $middlewares = [];
 
@@ -87,11 +87,16 @@
 		/**
 		 * Add a middleware to the route.
 		 *
-		 * @param string $middleware The middleware to add.
+		 * @param string $middleware The middleware class.
+		 * @param array $parameters The arguments passed to the middleware constructor
+		 *                          (string keys are passed as named arguments).
 		 * @return self The current Route instance.
 		 */
-		public function middleware(string $middleware) {
-			$this->middlewares[] = $middleware;
+		public function middleware(string $middleware, array $parameters = []) {
+			$this->middlewares[] = [
+				"class" => $middleware,
+				"parameters" => $parameters
+			];
 			return $this;
 		}
 
@@ -107,7 +112,7 @@
 		/**
 		 * Get the list of middlewares applied to the route.
 		 *
-		 * @return array The list of middlewares.
+		 * @return array The list of middlewares, each one is ["class" => string, "parameters" => array].
 		 */
 		public function getMiddlewares() {
 			return $this->middlewares;
