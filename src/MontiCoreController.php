@@ -5,7 +5,7 @@
 
 		public function setup(array $options = []) {
 			$this->copyResources("MontiCore", [
-				"only" => ["src"]
+				"only" => ["src", "config"]
 			]);
 		}
 	}

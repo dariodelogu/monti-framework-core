@@ -23,11 +23,6 @@
 		private ?string $name = null;
 
 		/**
-		 * @var array $original_middlewares The original middlewares applied to the route.
-		 */
-		private array $original_middlewares = [];
-
-		/**
 		 * @var array $middlewares The list of middlewares applied to the route.
 		 */
 		private array $middlewares = [];
@@ -96,7 +91,6 @@
 		 * @return self The current Route instance.
 		 */
 		public function middleware(string $middleware) {
-			$this->original_middlewares[] = $middleware;
 			$this->middlewares[] = $middleware;
 			return $this;
 		}

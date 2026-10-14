@@ -41,7 +41,7 @@ class Controller {
      * @param string $namespace The namespace identifying the destination sub-paths.
      * @param array  $options {
      *     @type string $source      The source directory. Default is the module directory.
-     *     @type array  $only        List of resource types to copy (e.g., ['views', 'locales', 'src', 'config.php', 'additional']).
+     *     @type array  $only        List of resource types to copy (e.g., ['views', 'locales', 'src', 'config', 'additional']).
      *     @type array  $additional  Additional files or directories to copy, as ['source_path' => 'relative_dest_path'].
      * }
      * @return void
@@ -67,7 +67,7 @@ class Controller {
         ], $options);
 
         $this->copyDirs($namespace, $options);
-        $this->copyFiles($namespace, $options);
+        $this->copyConfigs($options);
         $this->copyAdditional($namespace, $options);
     }
 
@@ -114,30 +114,29 @@ class Controller {
     }
 
     /**
-     * Copies mapped files (e.g. config.php) to their destinations.
+     * Copies the config files of the module (config folder of the module source)
+     * to the project config folder. A file the project already has is never
+     * overwritten, because the project edits it.
      *
-     * @param  string $namespace
      * @param  array  $options
      * @return void
      */
-    private function copyFiles(string $namespace, array $options): void
+    private function copyConfigs(array $options): void
     {
-        $map = [
-            'config.php' => root_path('config/' . strtolower($namespace) . '.php'),
-        ];
+        if(!$this->isIncluded('config', $options['only'])) {
+            return;
+        }
 
-        foreach($map as $key => $dest) {
-            if(!$this->isIncluded($key, $options['only'])) {
+        $from = $options['source'] . DIRECTORY_SEPARATOR . 'config';
+
+        foreach(glob($from . DIRECTORY_SEPARATOR . '*.php') ?: [] as $file) {
+            $dest = root_path('config/' . basename($file));
+
+            if(file_exists($dest)) {
                 continue;
             }
 
-            $from = $options['source'] . DIRECTORY_SEPARATOR . $key;
-
-            if(!is_file($from)) {
-                continue;
-            }
-
-            copy($from, $dest);
+            copy($file, $dest);
         }
     }
 
