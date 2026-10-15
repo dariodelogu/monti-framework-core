@@ -21,10 +21,10 @@
 		 * See main/System/Observers/ModelsObserver.php deleting()
 		 */
 		public function _delete(?string $date = null, string $connection = "default") {
-			if(\DB::connection($connection)->getSchemaBuilder()->hasColumn($this->table, 'deleted_at')) {
+			if(\DB::connection($connection)->getSchemaBuilder()->hasColumn($this->getTable(), 'deleted_at')) {
 				$this->deleted_at = $date ?? date("Y-m-d H:i:s");
 			}
-			if(\DB::connection($connection)->getSchemaBuilder()->hasColumn($this->table, 'deletion_user')) {
+			if(\DB::connection($connection)->getSchemaBuilder()->hasColumn($this->getTable(), 'deletion_user')) {
 				$this->deletion_user = \Auth::id() ?? 0;
 			}
 			return $this->save();
