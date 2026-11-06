@@ -82,7 +82,7 @@
 		 * @return     bool
 		 */
 		public static function allows(string|array $permissions, ?Model $subject): bool {
-			$permissions = (array) $permissions;
+			$permissions = (array)$permissions;
 			if($subject === null || empty($permissions)) {
 				return false;
 			}

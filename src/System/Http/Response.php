@@ -28,7 +28,7 @@
 		 * Parse a response object and return a formatted HTTP response.
 		 *
 		 * @param mixed $response The response to parse. Can be of various types:
-		 *                        - \App\System\Http\RedirectResponse: Returns as-is.
+		 *                        - \Psr\Http\Message\ResponseInterface (e.g. RedirectResponse): Returns as-is.
 		 *                        - \App\System\MVC\View\View: Builds the view content.
 		 *                        - \App\System\MVC\Model: Converts the model to JSON.
 		 *                        - \stdClass: Converts the object to an array.
@@ -39,7 +39,7 @@
 		public static function parse($response) {
 			$body = "";
 			$is_json = false;
-			if($response instanceof \App\System\Http\RedirectResponse) {
+			if($response instanceof \Psr\Http\Message\ResponseInterface) {
 				return $response;
 			}
 			if(is_string($response)) {
