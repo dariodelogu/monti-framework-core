@@ -114,9 +114,8 @@ class Controller {
     }
 
     /**
-     * Copies the config files of the module (config folder of the module source)
-     * to the project config folder. A file the project already has is never
-     * overwritten, because the project edits it.
+     * Copies the config files of the module (config folder of the source) to the project config folder,
+     * without overwriting the existing ones.
      *
      * @param  array  $options
      * @return void

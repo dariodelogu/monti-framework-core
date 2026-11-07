@@ -189,15 +189,11 @@
 		}
 
 		/**
-		 * Add a middleware to the group.
-		 *
-		 * The arguments are passed to the middleware constructor in the same order, e.g.
-		 * ->middleware(Can::class, "x", $date, false) creates new Can("x", $date, false).
-		 * String keys are passed as named arguments. It is the middleware that decides what its arguments mean.
+		 * Adds a middleware. The arguments are passed to its constructor, string keys as named arguments.
 		 *
 		 * @param string $middleware The middleware class.
-		 * @param mixed ...$arguments The middleware constructor arguments.
-		 * @return $this The current RouteGroup instance.
+		 * @param mixed ...$arguments The constructor arguments.
+		 * @return self
 		 */
 		public function middleware(string $middleware, mixed ...$arguments) {
 			$this->middlewares[] = [

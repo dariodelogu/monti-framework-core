@@ -40,11 +40,7 @@
 		}
 
 		/**
-		 * Creates the storage adapter of the store chosen in config/cache.php.
-		 *
-		 * The store defines the adapter class in "adapter", all its other keys are the options passed to
-		 * the adapter constructor, so any Laminas cache adapter can be used by changing the configuration
-		 * (and installing its package).
+		 * Creates the adapter of the store set in config/cache.php: "adapter" is the adapter class, the other keys are its options.
 		 *
 		 * @return     StorageInterface
 		 */
@@ -67,7 +63,7 @@
 		}
 
 		/**
-		 * Creates the folder of the filesystem adapter, if the options define one and it is missing.
+		 * Creates the folder of the filesystem adapter if it is missing.
 		 *
 		 * @param      array  $options  The adapter options
 		 *
@@ -96,8 +92,8 @@
 		/**
 		 * Gets a value from the cache.
 		 *
-		 * @param      string  $key      The cache key (PSR-16 doesn't allow the characters {}()/\@:)
-		 * @param      mixed   $default  Value returned if the key is missing or expired
+		 * @param      string  $key      PSR-16 doesn't allow the characters {}()/\@:
+		 * @param      mixed   $default  Returned if the key is missing or expired
 		 *
 		 * @return     mixed
 		 */
@@ -106,11 +102,11 @@
 		}
 
 		/**
-		 * Sets a value in the cache.
+		 * Stores a value in the cache.
 		 *
-		 * @param      string                    $key    The cache key (PSR-16 doesn't allow the characters {}()/\@:)
-		 * @param      mixed                     $value  The value, it must be serializable
-		 * @param      int|\DateInterval|null    $ttl    Lifetime in seconds, null for the one of config/cache.php
+		 * @param      string                    $key    PSR-16 doesn't allow the characters {}()/\@:
+		 * @param      mixed                     $value  It must be serializable
+		 * @param      int|\DateInterval|null    $ttl    Lifetime, null for the one of the store
 		 *
 		 * @return     bool
 		 */
@@ -119,7 +115,7 @@
 		}
 
 		/**
-		 * Empties the whole cache.
+		 * Empties the cache.
 		 *
 		 * @return     bool
 		 */
@@ -128,10 +124,9 @@
 		}
 
 		/**
-		 * Removes the keys that start with a prefix.
-		 * If the adapter can't do it, the whole cache is emptied: the result is always correct, but less selective.
+		 * Removes the keys that start with the prefix, or empties the cache if the adapter can't.
 		 *
-		 * @param      string  $prefix  The keys prefix
+		 * @param      string  $prefix
 		 *
 		 * @return     bool
 		 */
@@ -144,7 +139,7 @@
 		}
 
 		/**
-		 * Removes the expired entries. Adapters that expire the entries by themselves (e.g. Redis) have nothing to do.
+		 * Removes the expired entries.
 		 *
 		 * @return     void
 		 */
