@@ -7,7 +7,7 @@
 		 * The path to the view file.
 		 * @var string
 		 */
-		private string $view_path = "";
+		public private(set) string $view_path = "";
 
 		/**
 		 * Arguments passed to the view.
@@ -224,6 +224,7 @@
 		 *
 		 * @return     string  The view path
 		 */
+		#[\Deprecated(message: "Use the view_path property")]
 		public function getPath() {
 			return $this->view_path;
 		}
