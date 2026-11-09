@@ -9,7 +9,7 @@
 		 *
 		 * @param string $name The name of the event.
 		 */
-		public function __construct(private string $name) {}
+		public function __construct(private readonly string $name) {}
 
 		/**
 		 * Adds a listener to the event.
