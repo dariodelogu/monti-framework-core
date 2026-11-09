@@ -7,6 +7,7 @@
         protected string $message = 'rule.before';
         protected array $fillableParams = ['time'];
 
+        #[\Override]
         public function check($value): bool
         {
             $time = $this->parameter('time');
