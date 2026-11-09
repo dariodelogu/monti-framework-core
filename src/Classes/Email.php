@@ -60,6 +60,6 @@
 					"ssl" => $options["SMTPOptions"]["ssl"]
 				];
 			}
-			catch(\Throwable $t) {}
+			catch(\Throwable) {}
 		}
 	}

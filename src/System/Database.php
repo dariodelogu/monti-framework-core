@@ -39,7 +39,7 @@
 			try {
 				self::orm()->getConnection($name);
 			}
-			catch(\Throwable $t) {
+			catch(\Throwable) {
 				return false;
 			}
 			return true;
@@ -126,9 +126,9 @@
 					try {
 						return $o->$name(...$arguments);
 					}
-					catch(\Throwable $t) {}
+					catch(\Throwable) {}
 				}
 			}
-			catch(\Throwable $t) {}
+			catch(\Throwable) {}
 		}
 	}

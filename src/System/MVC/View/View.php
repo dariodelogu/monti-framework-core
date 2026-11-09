@@ -352,7 +352,7 @@
 					try {
 						$node_value = $match[1][0];
 					}
-					catch(\Throwable $t) {}
+					catch(\Throwable) {}
 					\Document::get()->appendInlineScript($node_value, dom_element_attributes($script), $tag_options);
 				}
 			}

@@ -19,7 +19,7 @@
                 $date_2 = new \DateTime($target_date);
                 return $date_1->getTimestamp() < $date_2->getTimestamp();
             }
-            catch(\Throwable $t) {
+            catch(\Throwable) {
                 throw new \Exception($this->message);
             }
             return false;

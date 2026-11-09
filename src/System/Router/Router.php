@@ -414,7 +414,7 @@
 			try {
 				$url = self::$instance->urlFor($route->getName(), $route->getParams());
 			}
-			catch(\Exception $e) {}
+			catch(\Exception) {}
 
 			self::$instance = $original_router;
 			\Language::set($original_lang, true);
